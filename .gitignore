@@ -1,0 +1,7 @@
+app/config/local.neon
+www/build
+.idea
+node_modules
+vendor
+yarn.lock
+composer.lock

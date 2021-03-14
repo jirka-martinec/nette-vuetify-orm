@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+    <title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
+
+    {block styles}
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+        <link n:foreach="$entrypoints->app->css as $file" rel="stylesheet" href="{$basePath}{$file}">
+    {/block}
+</head>
+
+<body>
+
+<div id="app">
+    <v-app>
+        {include components/appBar.latte}
+
+        <div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+
+        <v-main>
+            <v-container>
+                {include content}
+            </v-container>
+        </v-main>
+
+        {include components/footer.latte}
+    </v-app>
+</div>
+
+{block scripts}
+    <script n:foreach="$entrypoints->app->js as $file" src="{$basePath}{$file}"></script>
+{/block}
+</body>
+</html>
